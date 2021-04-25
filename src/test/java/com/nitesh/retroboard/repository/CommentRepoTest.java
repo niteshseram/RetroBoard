@@ -44,4 +44,16 @@ public class CommentRepoTest {
         assertThat(comments.get(0)).hasFieldOrPropertyWithValue("comment", "Test");
     }
 
+    @Test
+    void save_HappyPath_ShouldSave1Comment() {
+        // Given
+        Comment comment = new Comment();
+        comment.setComment("Test");
+        comment.setType(CommentType.PLUS);
+        comment.setCreatedDate(new Timestamp(System.currentTimeMillis()));
+        // When
+        Comment saved = commentRepository.save(comment);
+        // Then
+        assertThat(testEntityManager.find(Comment.class, saved.getId())).isEqualTo(saved);
+    }
 }
