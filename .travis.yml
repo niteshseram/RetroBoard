@@ -3,7 +3,8 @@ jdk:
   - openjdk8
 services:
   - docker
-before_script:
+before_install:
+  - chmod +x mvnw
   - echo $DOCKER_PASSWORD | docker login -u $DOCKER_USERNAME --password-stdin
   - curl https://cli-assets.heroku.com/install.sh
   - docker login --username=$HEROKU_LOGIN --password=$HEROKU_API_KEY registry.heroku.com
