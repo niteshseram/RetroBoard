@@ -36,7 +36,7 @@ public class CommentControllerTest {
     void saveComments_HappyPath_ShouldReturnStatus302() throws Exception {
         // When
         ResultActions resultActions =
-                mockMvc.perform(post("/comment").with(csrf()).with(user("shazin").roles("USER"))
+                mockMvc.perform(post("/comment").with(csrf()).with(user("nitesh").roles("USER"))
                         .param("plusComment", "Test Plus"));
 
         // Then
@@ -55,19 +55,19 @@ public class CommentControllerTest {
         Comment comment = new Comment();
         comment.setComment("Test Plus");
         comment.setType(CommentType.PLUS);
-        comment.setCreatedBy("Shazin");
+        comment.setCreatedBy("nitesh");
         comment.setCreatedDate(new Timestamp(System.currentTimeMillis()));
         Comment comment2 = new Comment();
         comment2.setComment("Test Star");
         comment2.setType(CommentType.STAR);
-        comment2.setCreatedBy("Shahim");
+        comment2.setCreatedBy("boy");
         comment2.setCreatedDate(new Timestamp(System.currentTimeMillis()));
         List<Comment> comments = Arrays.asList(comment, comment2);
         when(commentService.getAllCommentsForToday()).thenReturn(comments);
 
         // When
         ResultActions resultActions =
-                mockMvc.perform(get("/").with(user("shazin").roles("USER")));
+                mockMvc.perform(get("/").with(user("nitesh").roles("USER")));
         // Then
         resultActions
                 .andExpect(status().isOk())
@@ -75,14 +75,14 @@ public class CommentControllerTest {
                 .andExpect(model().attribute("plusComments", hasSize(1)))
                 .andExpect(model().attribute("plusComments", hasItem(
                         allOf(
-                                hasProperty("createdBy", is("Shazin")),
+                                hasProperty("createdBy", is("nitesh")),
                                 hasProperty("comment", is("Test Plus"))
                         )
                 )))
                 .andExpect(model().attribute("starComments", hasSize(1)))
                 .andExpect(model().attribute("starComments", hasItem(
                         allOf(
-                                hasProperty("createdBy", is("Shahim")),
+                                hasProperty("createdBy", is("boy")),
                                 hasProperty("comment", is("Test Star"))
                         )
                 )));

@@ -23,13 +23,13 @@ public class UserRepoTest {
     void findByUsername_HappyPath_ShouldReturn1User() throws Exception {
         // Given
         User user = new User();
-        user.setUsername("shazin");
+        user.setUsername("nitesh");
         user.setPassword("shaz980");
         user.setRole("USER");
         testEntityManager.persist(user);
         testEntityManager.flush();
         // When
-        User actual = userRepository.findByUsername("shazin");
+        User actual = userRepository.findByUsername("nitesh");
         // Then
         assertThat(actual).isEqualTo(user);
     }
@@ -38,7 +38,7 @@ public class UserRepoTest {
     public void save_HappyPath_ShouldSave1User() throws Exception {
         // Given
         User user = new User();
-        user.setUsername("shazin");
+        user.setUsername("nitesh");
         user.setPassword("shaz980");
         user.setRole("USER");
         // When

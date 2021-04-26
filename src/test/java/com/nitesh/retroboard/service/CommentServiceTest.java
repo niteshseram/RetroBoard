@@ -53,13 +53,13 @@ public class CommentServiceTest {
         Comment comment = new Comment();
         comment.setComment("Test Plus");
         comment.setType(CommentType.PLUS);
-        comment.setCreatedBy("Shazin");
+        comment.setCreatedBy("nitesh");
         comment.setCreatedDate(new
                 Timestamp(System.currentTimeMillis()));
         Comment comment2 = new Comment();
         comment2.setComment("Test Star");
         comment2.setType(CommentType.STAR);
-        comment2.setCreatedBy("Shahim");
+        comment2.setCreatedBy("boy");
         comment2.setCreatedDate(new Timestamp(System.currentTimeMillis()));
         List<Comment> comments = Arrays.asList(comment, comment2);
         when(commentRepository.saveAll(comments)).thenReturn(comments);

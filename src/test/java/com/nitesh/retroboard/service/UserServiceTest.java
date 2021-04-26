@@ -24,14 +24,14 @@ public class UserServiceTest {
     {
         // Given
         User user = new User();
-        user.setUsername("shazin");
+        user.setUsername("nitesh");
         user.setPassword("sha908");
         user.setRole("USER");
-        when(userRepository.findByUsername("shazin")).thenReturn(user);
+        when(userRepository.findByUsername("nitesh")).thenReturn(user);
         // When
-        UserDetails actual = userService.loadUserByUsername("shazin");
+        UserDetails actual = userService.loadUserByUsername("nitesh");
         // Then
-        verify(userRepository, times(1)).findByUsername("shazin");
+        verify(userRepository, times(1)).findByUsername("nitesh");
     }
 
 }
