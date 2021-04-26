@@ -1,0 +1,22 @@
+language: java
+jdk:
+  - openjdk8
+services:
+  - docker
+before_script:
+  - echo $DOCKER_PASSWORD | docker login -u $DOCKER_USERNAME --password-stdin
+  - curl https://cli-assets.heroku.com/install.sh
+  - docker login --username=$HEROKU_LOGIN --password=$HEROKU_API_KEY registry.heroku.com
+
+script:
+  - docker build -t niteshseram/reto-board:v1 .
+  - docker tag niteshseram/reto-board:v1 registry.heroku.com/$HEROKU_APP/web
+
+deploy:
+  provider: script
+  script:
+    docker push niteshseram/retro-board:v1;
+    docker push registry.heroku.com/$HEROKU_APP/web;
+    heroku container:release web --app $HEROKU_APP
+  on:
+    branch: main
